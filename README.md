@@ -31,3 +31,49 @@ To test:
 python
 >>>import cv2
 ```
+If an error is displayed then something went wrong and then the process needs to be redone.
+
+## Setting up the facial detection code
+###### 4. Creating directory
+Download this repository in /home/pi/ directory and unzip.
+
+###### 5. Give full permission
+Give *launcher.sh* full permissions by typing:
+```
+chmod 777 launcher.sh
+```
+
+###### 6. Create the directory for the saved images.
+Create the *dataset* directory in /home/pi/ directory by typing: ```mkdir dataset```
+
+NOTE: Do not use a different name for the directory, else AWS would be able to connect to this directory.
+
+###### 7. Run script to make sure everything is working
+Make sure *detector.py* works by running:
+```
+python detector.py
+```
+
+NOTE: Don't run ```sh launcher.sh``` as it won't show a display, because it is used for the automation process.<br>
+NOTE: If *detector.py* gives an error, run ```sudo modprobe bcm2835-v4l2``` and run ```python detector.py``` again.
+
+## Script automation
+###### 8. Ensure script runs automatically upon booting up the Pi.
+In order to automate the *detector.py* script, we'll have to edit the *crontab*. In order to do so, run the following in the Terminal:
+```
+sudo crontab -e
+```
+NOTE: If the Terminal asks what editor to use, it doesn't really matter. I personally keep it the NANO editor which is the default editor.
+
+The *crontab* gives a brief description on how the syntax works, so feel free to go through that.
+
+Add the following to the bottom line of the *crontab*:
+```
+@reboot sh /home/pi/faceDetection/launcher.sh >/home/pi/logs/cronlog 2>&1
+```
+
+After the *crontab* has been updated, the *logs* directory needs to be created in order to log any errors with the automation will show up, if there is any.
+
+```cd``` to the /home/pi/ directory and create the *logs* directory by typing ```mkdir logs```.
+
+Once the Pi is rebooted, the script should now be automatically running in the background and take pictures of any faces that is detected. Upon first boot, consult the *cronlog* that has been created in the *logs* directory (created in previous step). If the *cronlog* is empty, then you can be sure that everything is working, else the error will be displayed within the *cronlog*.
