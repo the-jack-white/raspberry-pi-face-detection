@@ -7,7 +7,7 @@ This project shows you how to setup a functioning facial detection camera using 
 Download Raspbian off the [official site](https://www.raspberrypi.org/downloads/) and use [Etcher](https://www.balena.io/etcher/) to flash Raspbian to the MicroSD card.
 
 ###### 2. Uninstall all unnecessary programs.
-Run the in the Terminal to remove all unnecessary programs:
+Run the following in the Terminal to remove all unnecessary programs:
 ```
 sudo apt-get remove --purge wolfram-engine* scratch* libreoffice*
 ```
