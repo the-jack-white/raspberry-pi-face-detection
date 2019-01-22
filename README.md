@@ -113,10 +113,79 @@ Create another directory with any name you want ```mkdir DIRECTORY_NAME``` and `
 
 Follow the next set of commands in order to install S3Tools, else you can follow the tutorial directly by clicking [here](https://rbgeek.wordpress.com/2014/07/16/how-to-install-the-latest-version-of-s3cmd-tool-on-linux/).
 
-* Install the required packages before installing S3Tools
+* Install the required packages before installing S3Tools.
 ```
 sudo yum install unzip python-pip
 ```
 ```
 wget https://github.com/s3tools/s3cmd/archive/master.zip
 ```
+
+* Unzip the downloaded source zip and ```cd``` into it.
+```
+unzip master.zip
+```
+```
+cd s3cmd-master/
+```
+
+* Run the following command:
+```
+sudo python setup.py install
+```
+
+* Next, install the *dateutil* module, which is powerful extensions to the datetime module.
+```
+sudo pip install python-dateutil
+```
+
+* Check the installed version of s3cmd tool:
+```
+s3cmd --version
+```
+
+* After the installation, run the following command to configure your s3cmd tools using your **AMAZON ACCESS KEY** and **SECRET KEY**.
+```
+s3cmd --configure
+```
+
+* A prompt will appear where it asks you for both, your Access Key and Secret Key. Add both and a few more prompts will appear, but you can just use the default input by hitting *ENTER* for every prompt, until it asks you:
+
+> Test access with supplied credentials? [Y/n]
+```
+y
+```
+
+* You should then get a prompt saying:
+
+> Success. Your access key and secret key worked fine :-)
+
+* If you get this prompt, it will then ask you to save settings:
+```
+y
+```
+
+* S3Tools is then successfully installed and you can continue, or else redo this process if you've encountered anything that I did not mention.
+
+**NOTE**: You can repeat this process any time you want.
+
+###### 11. Add the final few steps
+If you made it this far then you can be sure that S3Tools is working smoothly.
+
+Next, we need to go back to *crontab* to add the automation to AWS uploading:
+```
+sudo crontab -e
+```
+Then add the following to the bottom line:
+```
+*/5 * * * * /scripts/datasend.sh > /dev/null 2>&1
+```
+This should upload everything , with an interval of 5 minutes, that is in the *dataset* directory, created in step 6, to the S3 bucket you specified in step 9.
+
+You can test this by ```cd``` into the *dataset* directory and running the following command to create a test image and wait for it to upload to your bucket:
+```
+raspistill -o test.jpg
+```
+**NOTE**: This command will also allow you to see if your camera is connected properly.
+
+If the *test.jpg* file is uploaded sucessfully, then you can congratulate yourself to have a fully functioning facial detection system that uploads the data to the AWS cloud.
