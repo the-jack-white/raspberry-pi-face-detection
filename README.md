@@ -69,8 +69,9 @@ The *crontab* gives a brief description on how the syntax works, so feel free to
 
 Add the following to the bottom line of the *crontab*:
 ```
-@reboot sh /home/pi/faceDetection/launcher.sh >/home/pi/logs/cronlog 2>&1
+@reboot sh /home/pi/raspberry-pi-face-detection-master/launcher.sh >/home/pi/logs/cronlog 2>&1
 ```
+**NOTE**: */home/pi/raspberry-pi-face-detection-master/launcher.sh* should be the exact file path to the *launcher.sh* file.
 
 After the *crontab* has been updated, the *logs* directory needs to be created in order to log any errors that could show up in the automation, if this is the case.
 
