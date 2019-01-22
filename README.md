@@ -107,3 +107,16 @@ fi
 * The bucket name should be EXACTLY the same as the bucket name in AWS S3.
 * There should be no spaces in the bucket name, as it can cause errors.
 * Try not to use an exsiting bucket, rather create a brand new bucket, as it can also create errors.
+
+###### 10. Installing S3Tools
+Create another directory with any name you want ```mkdir DIRECTORY_NAME``` and ```cd``` into it.
+
+Follow the next set of commands in order to install S3Tools, else you can follow the tutorial directly by clicking [here](https://rbgeek.wordpress.com/2014/07/16/how-to-install-the-latest-version-of-s3cmd-tool-on-linux/).
+
+* Install the required packages before installing S3Tools
+```
+sudo yum install unzip python-pip
+```
+```
+wget https://github.com/s3tools/s3cmd/archive/master.zip
+```
