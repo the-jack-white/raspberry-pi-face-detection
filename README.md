@@ -35,7 +35,10 @@ If an error is displayed then something went wrong and then the process needs to
 
 ## Setting up the facial detection code
 ###### 4. Creating directory
-Download this repository in /home/pi/ directory and unzip.
+Download this repository in /home/pi/ directory and unzip:
+```
+wget https://github.com/the-jack-white/raspberry-pi-face-detection/archive/master.zip
+```
 
 ###### 5. Give full permission
 Give *launcher.sh* full permissions by typing:
